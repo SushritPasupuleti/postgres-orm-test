@@ -16,3 +16,12 @@ INSERT INTO person
     )
 VALUES
     ('Bruce', 'Wayne', 'bruce@wayne.com', '1988-02-22');
+INSERT INTO person
+    (
+    firstName,
+    lastName,
+    email,
+    dob
+    )
+VALUES
+    ('Clark', 'Kent', 'kent@dailyplanet.com', '1987-12-31');
