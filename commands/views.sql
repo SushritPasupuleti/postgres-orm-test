@@ -1,0 +1,1 @@
+CREATE VIEW ctos_age AS SELECT AGE(NOW(), dob) fROM ctos;
