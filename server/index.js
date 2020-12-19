@@ -84,6 +84,39 @@ app.get('/ctos-add-random', (req, res) => {
     )
 })
 
+app.get('/ctos-add-random-raw', (req, res) => {
+    const first_name = 'Clark';
+    const last_name = 'Kent';
+    const email = 'clark@dailymail.us';
+    const gender = 'Male';
+    const dob = '1988-02-25';
+    const income = '$15000';
+    const details = '';
+    const skills = 'Bad at Cosplay';
+
+    sequelize.query(`INSERT INTO ctos 
+    (first_name, last_name, email, gender, dob, income, details, skills)
+    VALUES
+    (
+        '${first_name}',
+        '${last_name}',
+        '${email}',
+        '${gender}',
+        '${dob}',
+        '${income}',
+        '${details}',
+        '${skills}'
+    )
+    `, {
+        raw: true,
+        type: QueryTypes.INSERT
+    }).then(
+        records => {
+            res.send(records)
+        }
+    )
+})
+
 app.listen(port, () => {
     console.log(`Postgres Backend listening at http://localhost:${port}`)
 })
