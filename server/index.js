@@ -3,7 +3,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
+
 const sequelize = require('./models');
+const { QueryTypes } = require('sequelize');
 
 sequelize.authenticate()
     .then(() => console.log("Database Connected"))
@@ -67,6 +69,17 @@ app.get('/ctos-add-random', (req, res) => {
         ]
     }).then(
         ctos_model => res.send("Added Random Model: " + ctos_model.toJSON)
+    )
+})
+
+app.get('/ctos-add-random-raw', (req, res) => {
+    sequelize.query('SELECT * FROM ctos', {
+        raw: true,
+        type: QueryTypes.SELECT
+    }).then(
+        records => {
+            res.send(records)
+        }
     )
 })
 
