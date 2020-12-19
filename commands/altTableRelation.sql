@@ -1,13 +1,7 @@
 create table ctos_items (
 	id BIGSERIAL PRIMARY KEY,
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	email VARCHAR(50),
-	gender VARCHAR(50),
-	dob DATE,
-	income VARCHAR(50),
-	details VARCHAR(50),
-	skills VARCHAR(50)
+	item_name VARCHAR(50),
+    item_count VARCHAR(50)
 );
 
 create table ctos (
