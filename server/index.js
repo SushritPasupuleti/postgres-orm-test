@@ -1,4 +1,6 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const { Sequelize } = require('sequelize')
 const app = express()
 const port = 3000
 
