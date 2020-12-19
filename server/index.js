@@ -66,24 +66,9 @@ app.get('/ctos-add-random', (req, res) => {
             'skills',
         ]
     }).then(
-        ctos_model => res.send(ctos_model)
+        ctos_model => res.send("Added Random Model: " + ctos_model.toJSON)
     )
-    // res.send("This will fail no matter what")
 })
-
-// app.get('/ctos-add-random', (req, res) => {
-//     sequelize.Ctos.({
-//         first_name: "Bruce",
-//         last_name: "Wayne",
-//         email: "wayne@wayneinc.com",
-//         gender: "Male",
-//         dob: "1988-02-25",
-//         income: "$24000000.00",
-//         details: "",
-//         skills: "I\'m Batman"
-//     })
-//     res.send("This will fail no matter what")
-// })
 
 app.listen(port, () => {
     console.log(`Postgres Backend listening at http://localhost:${port}`)
