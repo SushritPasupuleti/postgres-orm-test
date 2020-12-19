@@ -36,6 +36,18 @@ app.get('/ctos-preview', (req, res) => {
         )
 })
 
+app.get('/ctos-preview-raw', (req, res) => {
+    sequelize.query('SELECT * FROM ctos', {
+        raw: true,
+        type: QueryTypes.SELECT
+    }).then(
+        records => {
+            res.send(records)
+        }
+    )
+})
+
+
 app.get('/ctos-add-random', (req, res) => {
     sequelize.Ctos.create({
         first_name: "Bruce",
@@ -69,17 +81,6 @@ app.get('/ctos-add-random', (req, res) => {
         ]
     }).then(
         ctos_model => res.send("Added Random Model: " + ctos_model.toJSON)
-    )
-})
-
-app.get('/ctos-add-random-raw', (req, res) => {
-    sequelize.query('SELECT * FROM ctos', {
-        raw: true,
-        type: QueryTypes.SELECT
-    }).then(
-        records => {
-            res.send(records)
-        }
     )
 })
 
