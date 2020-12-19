@@ -5,3 +5,5 @@ module.exports = new Sequelize(process.env.DATABASE, process.env.DBUSERNAME, pro
     port: '5433', //specific to my device. leave default for rest.
     dialect: 'postgres'
 })
+
+module.exports.Ctos = require('./ctos');

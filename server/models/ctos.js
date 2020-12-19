@@ -3,7 +3,8 @@ const db = require('./index');
 
 const Ctos = db.define('ctos', {
     id: {
-        type: DataTypes.BIGINT
+        type: DataTypes.BIGINT,
+        primaryKey: true
     },
     first_name: {
         type: DataTypes.STRING
@@ -11,7 +12,7 @@ const Ctos = db.define('ctos', {
     last_name: {
         type: DataTypes.STRING
     },
-    email_name: {
+    email: {
         type: DataTypes.STRING
     },
     gender: {
@@ -32,7 +33,10 @@ const Ctos = db.define('ctos', {
     item_id: {
         type: DataTypes.BIGINT
     },
-})
+},
+    {
+        timestamps: false
+    })
 
 //TestPrint
 console.log('CTOS Model: ', Ctos)
