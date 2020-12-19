@@ -20,3 +20,11 @@ In psql shell
 ```
 
 Mock data can be generated from [Mockaroo](https://www.mockaroo.com/)
+
+### Add Auto UUID Generation
+
+In psql shell
+
+```bash
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+```

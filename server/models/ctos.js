@@ -3,8 +3,10 @@ const db = require('./index');
 
 const Ctos = db.define('ctos', {
     id: {
-        type: DataTypes.BIGINT,
-        primaryKey: true
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false,
+        defaultValue: Sequelize.literal('uuid_in((md5((random())::text))::cstring)')
     },
     first_name: {
         type: DataTypes.STRING
@@ -31,11 +33,17 @@ const Ctos = db.define('ctos', {
         type: DataTypes.STRING
     },
     item_id: {
-        type: DataTypes.BIGINT
+        type: DataTypes.UUID,
+        allowNull: true
     },
 },
     {
-        timestamps: false
+        timestamps: false,
+        hooks: {
+            afterCreate: function () {
+                console.log("After Create")
+            }
+        }
     })
 
 //TestPrint
