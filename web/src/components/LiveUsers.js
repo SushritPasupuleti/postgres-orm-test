@@ -3,18 +3,19 @@ const { useQuery, gql } = require("@apollo/client");
 
 const USERS = gql`
 query MyQuery {
-    
-    ctos {
-      id
-      last_name
-      first_name
-    }
+        ctos(order_by: { first_name: asc }) {
+        id
+        last_name
+        first_name
+        skills
+        }
   }
-  
 `
 
 function Users() {
-    const { loading, error, data } = useQuery(USERS);
+    const { loading, error, data } = useQuery(USERS, {
+        pollInterval: 1000
+    });
 
     if (loading) {
         return (
@@ -36,11 +37,12 @@ function Users() {
         <div>
             {
                 data.ctos.map(({
-                    id, first_name, last_name
+                    id, first_name, last_name, skills
                 }) => (
-                    <div key={id} style={{display: 'flex', flexWrap: 'nowrap'}}>
-                        <h3 style={{marginRight: '10px'}}>{first_name}</h3>
-                        <h4>{last_name}</h4>
+                    <div key={id} style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                        <h3 style={{ marginRight: '10px' }}>{first_name}</h3>
+                        <h4 style={{ marginRight: '10px' }}>{last_name}</h4>
+                        <h5>{skills}</h5>
                     </div>
                 ))
             }

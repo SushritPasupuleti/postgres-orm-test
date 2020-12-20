@@ -1,6 +1,7 @@
 import React from 'react'
-import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloProvider, ApolloClient, HttpLink, WebSocketLink, InMemoryCache } from '@apollo/client'
 import Users from './components/Users'
+import LiveUsers from './components/LiveUsers'
 import SearchedUsers from './components/Search'
 
 const client = new ApolloClient({
@@ -16,6 +17,7 @@ const App = () => (
       Apollo Client 🚀
       {/* <Users></Users> */}
       <SearchedUsers></SearchedUsers>
+      <LiveUsers></LiveUsers>
     </div>
   </ApolloProvider>
 )
