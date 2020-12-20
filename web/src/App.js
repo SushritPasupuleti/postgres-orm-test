@@ -1,6 +1,7 @@
 import React from 'react'
 import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import Users from './components/Users'
+import SearchedUsers from './components/Search'
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -13,7 +14,8 @@ const App = () => (
   <ApolloProvider client={client}>
     <div>
       Apollo Client 🚀
-      <Users></Users>
+      {/* <Users></Users> */}
+      <SearchedUsers></SearchedUsers>
     </div>
   </ApolloProvider>
 )
