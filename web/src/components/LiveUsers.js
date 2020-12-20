@@ -2,7 +2,7 @@ import React from 'react'
 const { useQuery, gql } = require("@apollo/client");
 
 const USERS = gql`
-query MyQuery {
+query LiveUsers {
         ctos(order_by: { first_name: asc }) {
         id
         last_name
