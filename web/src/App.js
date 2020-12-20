@@ -13,7 +13,7 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <div>
+    <div style={{padding: '10px'}}>
       Apollo Client 🚀
       {/* <Users></Users> */}
       <SearchedUsers></SearchedUsers>
