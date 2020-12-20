@@ -40,8 +40,8 @@ const Ctos = db.define('ctos', {
     {
         timestamps: false,
         hooks: {
-            afterCreate: function () {
-                console.log("After Create")
+            afterCreate: function (res, options) {
+                console.log("After Create", res.dataValues.id)
             }
         }
     })

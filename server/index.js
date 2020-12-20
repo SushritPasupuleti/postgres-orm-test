@@ -70,6 +70,7 @@ app.get('/ctos-add-random', (req, res) => {
             'skills',
         ],
         returning: [
+            'id',
             'first_name',
             'last_name',
             'email',
@@ -80,7 +81,10 @@ app.get('/ctos-add-random', (req, res) => {
             'skills',
         ]
     }).then(
-        ctos_model => res.send("Added Random Model: " + ctos_model.toJSON)
+        ctos_model => {
+            console.log(ctos_model)
+            res.json(ctos_model.id)
+        }
     )
 })
 
