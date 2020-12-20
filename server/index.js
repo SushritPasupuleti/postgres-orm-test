@@ -82,7 +82,7 @@ app.get('/ctos-add-random', (req, res) => {
         ]
     }).then(
         ctos_model => {
-            console.log(ctos_model)
+            console.log(ctos_model.id)
             res.json(ctos_model.id)
         }
     )
