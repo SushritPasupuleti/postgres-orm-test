@@ -134,8 +134,8 @@ app.get('/ctos-add-random-raw', (req, res) => {
     )
 })
 
-app.get('/ctos-search', (req, res) => {
-    sequelize.Ctos.search("Wayne").then(
+app.post('/ctos-search', (req, res) => {
+    sequelize.Ctos.search(req.body.query).then(
         ctos_model => {
             console.table(ctos_model);
             res.send(ctos_model)
