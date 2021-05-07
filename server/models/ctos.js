@@ -81,6 +81,21 @@ const Ctos = db.define('ctos', {
                 }).error(console.log);
 
         },
+
+        search: function (query) {
+            if (sequelize.options.dialect !== 'postgres') {
+                console.log('Search is only implemented on POSTGRES database');
+                return;
+            }
+
+            var Ctos = this;
+
+            query = sequelize.getQueryInterface().escape(query);
+            console.log(query);
+
+            return sequelize
+                .query('SELECT * FROM "' + Ctos.tableName + '" WHERE "' + Ctos.getSearchVector() + '" @@ plainto_tsquery(\'english\', ' + query + ')', Ctos);
+        }
     }
 })
 
