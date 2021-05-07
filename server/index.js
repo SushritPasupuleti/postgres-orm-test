@@ -11,8 +11,10 @@ sequelize.authenticate()
     .then(() => console.log("Database Connected"))
     .catch(err => console.log("Error Connecting to DB", err))
 
-sequelize.sync({ alter: true }).catch(err =>
+sequelize.sync({ alter: true }).catch(err => {
+    sequelize.Ctos.addFullTextIndex();
     console.log("error: ", err)
+}
 );
 console.log("All models were synchronized successfully.");
 
