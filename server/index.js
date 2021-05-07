@@ -16,6 +16,9 @@ sequelize.sync({ alter: true }).catch(err => {
     console.log("error: ", err)
 }
 );
+// sequelize.sync({ alter: true }).done(function () {
+//     sequelize.Ctos.addFullTextIndex();
+// });
 console.log("All models were synchronized successfully.");
 
 
