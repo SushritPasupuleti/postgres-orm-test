@@ -17,8 +17,9 @@ sequelize.authenticate()
 // );
 
 sequelize.sync({ alter: true }).then(x => {
-    console.log("Executing ADD FTS")
-    sequelize.Ctos.addFullTextIndex();
+    // run only once
+    // console.log("Executing ADD FTS")
+    // sequelize.Ctos.addFullTextIndex();
 }).catch(err => {
     console.log("error: ", err)
 }
