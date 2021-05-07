@@ -70,8 +70,17 @@ const Ctos = db.define('ctos', {
                     return sequelize
                         .query('UPDATE "' + Ctos.tableName + '" SET "' + vectorName + '" = to_tsvector(\'english\', ' + searchFields.join(' || \' \' || ') + ')')
                         .error(console.log);
+                }).success(function () {
+                    return sequelize
+                        .query('CREATE INDEX ctos_search_idx ON "' + Ctos.tableName + '" USING gin("' + vectorName + '");')
+                        .error(console.log);
+                }).success(function () {
+                    return sequelize
+                        .query('CREATE TRIGGER ctos_vector_update BEFORE INSERT OR UPDATE ON "' + Ctos.tableName + '" FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger("' + vectorName + '", \'pg_catalog.english\', ' + searchFields.join(', ') + ')')
+                        .error(console.log);
                 }).error(console.log);
-        }
+
+        },
     }
 })
 
