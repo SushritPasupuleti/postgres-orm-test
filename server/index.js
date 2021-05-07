@@ -11,8 +11,15 @@ sequelize.authenticate()
     .then(() => console.log("Database Connected"))
     .catch(err => console.log("Error Connecting to DB", err))
 
-sequelize.sync({ alter: true }).catch(err => {
+// sequelize.sync({ alter: true }).catch(err => {
+//     console.log("error: ", err)
+// }
+// );
+
+sequelize.sync({ alter: true }).then(x => {
+    console.log("Executing ADD FTS")
     sequelize.Ctos.addFullTextIndex();
+}).catch(err => {
     console.log("error: ", err)
 }
 );
@@ -126,6 +133,23 @@ app.get('/ctos-add-random-raw', (req, res) => {
     )
 })
 
+app.get('/ctos-search', (req, res) => {
+    sequelize.Ctos.search("Wayne").then(
+        ctos_model => {
+            console.table(ctos_model);
+            res.send(ctos_model)
+        }
+    )
+        .catch(
+            err => {
+                console.log(err)
+                res.send(err)
+            }
+        )
+})
+
 app.listen(port, () => {
     console.log(`Postgres Backend listening at http://localhost:${port}`)
 })
+
+//SELECT * FROM ctos WHERE ctos_bio @@ to_tsquery('function')
