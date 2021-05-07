@@ -47,6 +47,12 @@ const Ctos = db.define('ctos', {
                 console.log("After Create", res.dataValues.id)
             }
         }
+    }, {
+        classMethods: {
+            getSearchVector: function() {
+                return 'CTOSBio';
+            },
+        }
     })
 
 //TestPrint
