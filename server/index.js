@@ -16,6 +16,8 @@ sequelize.authenticate()
 // }
 // );
 
+app.use(bodyParser())
+
 sequelize.sync().then(x => {
     // run only once
     console.log("Executing ADD FTS")
