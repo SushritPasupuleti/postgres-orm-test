@@ -17,6 +17,9 @@ const Ctos = db.define('ctos', {
     email: {
         type: DataTypes.STRING
     },
+    bio: {
+        type: DataTypes.STRING
+    },
     gender: {
         type: DataTypes.STRING
     },
