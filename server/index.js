@@ -16,10 +16,10 @@ sequelize.authenticate()
 // }
 // );
 
-sequelize.sync({ alter: true }).then(x => {
+sequelize.sync().then(x => {
     // run only once
-    // console.log("Executing ADD FTS")
-    // sequelize.Ctos.addFullTextIndex();
+    console.log("Executing ADD FTS")
+    sequelize.Ctos.addFullTextIndex();
 }).catch(err => {
     console.log("error: ", err)
 }
