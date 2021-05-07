@@ -149,7 +149,7 @@ Ctos.getSearchVector = function () {
         console.log(query);
 
         return db
-            .query('SELECT * FROM "' + Ctos.tableName + '" WHERE "' + Ctos.getSearchVector() + '" @@ plainto_tsquery(\'' + query + '\')', {
+            .query('SELECT * FROM "' + Ctos.tableName + '" WHERE "' + Ctos.getSearchVector() + '" @@ plainto_tsquery(\'' + query + '\');', {
                 logging: console.log,
                 plain: false,
                 raw: false,
