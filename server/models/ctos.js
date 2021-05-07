@@ -149,7 +149,7 @@ Ctos.search = function (query) {
     console.log(query);
 
     return db
-        .query('SELECT * FROM "' + Ctos.tableName + '" WHERE "' + Ctos.getSearchVector() + '" @@ plainto_tsquery(\'english\', ' + query + ')', Ctos);
+        .query('SELECT * FROM "' + Ctos.tableName + '" WHERE "' + Ctos.getSearchVector() + '" @@ plainto_tsquery(\'' + query + '\')', Ctos);
 }
 
 //TestPrint
