@@ -48,12 +48,32 @@ const Ctos = db.define('ctos', {
             }
         }
     }, {
-        classMethods: {
-            getSearchVector: function() {
-                return 'CTOSBio';
-            },
+    classMethods: {
+        getSearchVector: function () {
+            return 'CTOSBio';
+        },
+
+        addFullTextIndex: function () {
+
+            if (sequelize.options.dialect !== 'postgres') {
+                console.log('Not creating search index, must be using POSTGRES to do this');
+                return;
+            }
+
+            var searchFields = ['bio', 'first_name', 'last_name'];
+            var Ctos = this;
+
+            var vectorName = Ctos.getSearchVector();
+            sequelize
+                .query('ALTER TABLE "' + Ctos.tableName + '" ADD COLUMN "' + vectorName + '" TSVECTOR')
+                .success(function () {
+                    return sequelize
+                        .query('UPDATE "' + Ctos.tableName + '" SET "' + vectorName + '" = to_tsvector(\'english\', ' + searchFields.join(' || \' \' || ') + ')')
+                        .error(console.log);
+                }).error(console.log);
         }
-    })
+    }
+})
 
 //TestPrint
 console.log('CTOS Model: ', Ctos)
