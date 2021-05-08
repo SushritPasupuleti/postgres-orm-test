@@ -155,4 +155,5 @@ app.listen(port, () => {
     console.log(`Postgres Backend listening at http://localhost:${port}`)
 })
 
-//SELECT * FROM ctos WHERE ctos_bio @@ to_tsquery('function')
+//SELECT * FROM ctos WHERE ctos_bio @@ to_tsquery('function'); /// uses triggers and special column, faster too
+//SELECT * FROM "ctos" WHERE to_tsvector(bio || ' ' || skills) @@ plainto_tsquery('customer poster'); // slow but works without triggers or any special columns
