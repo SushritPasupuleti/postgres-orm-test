@@ -39,6 +39,9 @@ const Ctos = db.define('ctos', {
         type: DataTypes.UUID,
         allowNull: true
     },
+    ctos_bio: {
+        type: DataTypes.TSVECTOR,
+    }
 },
     {
         timestamps: false,
